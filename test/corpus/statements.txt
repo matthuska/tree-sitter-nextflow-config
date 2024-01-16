@@ -1,0 +1,14 @@
+================================================================================
+Include config statement
+================================================================================
+
+includeConfig 'example.config'
+
+--------------------------------------------------------------------------------
+
+(config_file
+  (include
+    (string_literal
+      (string_literal_single
+        (string_literal_fragment_single)))))
+
