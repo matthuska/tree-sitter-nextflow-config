@@ -1,3 +1,15 @@
+/**
+ * @file Nextflow config file grammar for tree-sitter
+ * @author Matt Huska
+ * @license MIT
+ */
+
+/* eslint-disable arrow-parens */
+/* eslint-disable camelcase */
+/* eslint-disable-next-line spaced-comment */
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 module.exports = grammar({
   name: 'nextflow_config',
 
@@ -6,7 +18,7 @@ module.exports = grammar({
   extras: $ => [
     $.line_comment,
     $.block_comment,
-    /\s/
+    /\s/,
   ],
 
   rules: {
@@ -23,7 +35,7 @@ module.exports = grammar({
         repeat1(
           seq(
             field('scope', $.identifier),
-            '.'
+            '.',
           ),
         ),
       ),
@@ -42,18 +54,18 @@ module.exports = grammar({
         repeat1(
           seq(
             field('scope', $.identifier),
-            '.'
+            '.',
           ),
         ),
       ),
       field('scope', $.identifier),
       '{',
-        repeat(
-          choice(
-            $.scope_block,
-            $.assignment,
-          ),
+      repeat(
+        choice(
+          $.scope_block,
+          $.assignment,
         ),
+      ),
       '}',
     ),
 
@@ -74,7 +86,7 @@ module.exports = grammar({
       repeat(
         $.string_literal_fragment_single,
       ),
-      '\''
+      '\'',
     ),
 
     string_literal_double: $ => seq(
@@ -82,7 +94,7 @@ module.exports = grammar({
       repeat(
         $.string_literal_fragment_double,
       ),
-      '"'
+      '"',
     ),
 
     string_literal_fragment_single: $ => token.immediate(prec(1, /[^'\\\n]+/)),
@@ -109,10 +121,10 @@ module.exports = grammar({
 
     comment: $ => choice($.line_comment, $.block_comment),
 
-    line_comment: $ => token(prec(0, seq("//", /[^\n]*/))),
+    line_comment: $ => token(prec(0, seq('//', /[^\n]*/))),
 
     block_comment: $ =>
-      token(prec(0, seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"))),
-  }
+      token(prec(0, seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'))),
+  },
 });
 
