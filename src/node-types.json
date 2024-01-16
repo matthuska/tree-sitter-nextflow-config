@@ -91,6 +91,10 @@
           "named": true
         },
         {
+          "type": "null_literal",
+          "named": true
+        },
+        {
           "type": "numeric_literal",
           "named": true
         },
@@ -237,6 +241,10 @@
   },
   {
     "type": "line_comment",
+    "named": true
+  },
+  {
+    "type": "null_literal",
     "named": true
   },
   {

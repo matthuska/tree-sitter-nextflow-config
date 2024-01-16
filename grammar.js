@@ -61,6 +61,7 @@ module.exports = grammar({
       $.string_literal,
       $.boolean_literal,
       $.numeric_literal,
+      $.null_literal,
     ),
 
     string_literal: $ => choice(
@@ -87,6 +88,8 @@ module.exports = grammar({
     string_literal_fragment_single: $ => token.immediate(prec(1, /[^'\\\n]+/)),
 
     string_literal_fragment_double: $ => token.immediate(prec(1, /[^"\\\n]+/)),
+
+    null_literal: $ => 'null',
 
     boolean_literal: $ => choice(
       'true',
